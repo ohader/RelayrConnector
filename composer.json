@@ -18,7 +18,7 @@
         "symfony/console": "2.6.*"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "OliverHader\\RelayrConnector\\": "src/"
         }
     }
