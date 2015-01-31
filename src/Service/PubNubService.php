@@ -74,7 +74,9 @@ class PubNubService {
 						'subscribe_key' => $subscription->getSubscribeKey(),
 						'auth_key' => $subscription->getAuthKey(),
 						'cipher_key' => $subscription->getCipherKey(),
-						'pem_path' => dirname(__DIR__),
+						// In case SSL transactions are not wanted,
+						// the following two lines are not required
+						'pem_path' => dirname(__DIR__) . '/Resources/',
 						'ssl' => TRUE,
 					)
 			);
