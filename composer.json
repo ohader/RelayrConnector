@@ -19,8 +19,7 @@
     },
     "autoload": {
         "psr-0": {
-            "OliverHader\\RelayrConnector\\Model": "src/Model",
-            "OliverHader\\RelayrConnector\\Service": "src/Service"
+            "OliverHader\\RelayrConnector\\": "src/"
         }
     }
 }
