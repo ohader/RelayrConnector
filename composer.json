@@ -1,11 +1,10 @@
 {
     "name": "oliverhader/relayrconnector",
     "type": "library",
-    "description": "",
+    "description": "Wunderbar Relayr Connector Service using PubNub to retrieve sensor data",
     "keywords": ["relayr", "wunderbar", "pubnub", "web service", "client"],
     "homepage": "https://github.com/ohader/RelayrConnector",
     "license": "LGPL-3.0+",
-
     "authors": [
         {
             "name": "Oliver Hader",
@@ -14,9 +13,9 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "guzzle/guzzle": "dev-master",
-        "pubnub/pubnub": "dev-master",
-        "symfony/console": "dev-master"
+        "guzzle/guzzle": "3.8.*",
+        "pubnub/pubnub": "3.7.*",
+        "symfony/console": "2.6.*"
     },
     "autoload": {
         "psr-0": {
