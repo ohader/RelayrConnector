@@ -1,4 +1,6 @@
-# Wunderbar Relayr Connector
+# Wunderbar Relayr Connector for PHP
+
+*by [Oliver Hader](mailto:oliver@typo3.org)*
 
 ## Installation
 
@@ -38,3 +40,8 @@ LeetBar
 | bridge      | -/-                       | -/-                                                                  |
 +-------------+---------------------------+----------------------------------------------------------------------+
 ```
+
+## Next steps
+
+* extend the generic sensor data model into specific sub-models
+* integrate persistence layer to accumulate sensor data
