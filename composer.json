@@ -1,0 +1,26 @@
+{
+    "name": "oliverhader/relayrconnector",
+    "type": "library",
+    "description": "",
+    "keywords": ["relayr", "wunderbar", "pubnub", "web service", "client"],
+    "homepage": "",
+    "license": "LGPL-3.0+",
+
+    "authors": [
+        {
+            "name": "Oliver Hader",
+            "email": "oliver@typo3.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "guzzle/guzzle": "dev-master",
+        "pubnub/pubnub": "dev-master",
+        "symfony/console": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "OliverHader\\RelayrConnector": "src/"
+        }
+    }
+}
