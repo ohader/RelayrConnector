@@ -5,6 +5,20 @@ use \OliverHader\RelayrConnector as Relayr;
 
 class Generic {
 
+	/**
+	 * @param Relayr\Model\Model $model
+	 * @return Generic|Light|Temperature
+	 */
+	static public function create(Relayr\Model\Model $model) {
+		if ($model->is(Relayr\Model\Model::MODEL_WunderbarThermometerHumiditySensor)) {
+			return new Temperature();
+		}
+		if ($model->is(Relayr\Model\Model::MODEL_WunderbarLightProximitySensor)) {
+			return new Light();
+		}
+		return new Generic();
+	}
+
 	protected $values = array();
 	protected $timeStamp;
 

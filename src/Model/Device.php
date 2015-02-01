@@ -49,7 +49,9 @@ class Device {
 		$this->description = $description;
 		$this->public = (bool)$public;
 
-		$this->sensorData = new Relayr\Model\SensorData\Generic();
+		$this->sensorData = Relayr\Model\SensorData\Generic::create(
+			$this->getModel()
+		);
 	}
 
 	public function getApp() {

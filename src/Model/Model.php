@@ -58,4 +58,12 @@ class Model {
 		return $this->readings;
 	}
 
+	/**
+	 * @param string $id
+	 * @return bool
+	 */
+	public function is($id) {
+		return ($this->getId() === $id);
+	}
+
 }
