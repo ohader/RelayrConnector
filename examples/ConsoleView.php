@@ -21,5 +21,5 @@ $interest = array(
 	Relayr\Model\Model::MODEL_WunderbarLightProximitySensor,
 );
 
-$renderer = new Relayr\Service\Cli\RenderService($app, $interest);
+$renderer = new \OliverHader\RelayrConnector\Handler\Cli\RenderHandler($app, $interest);
 Relayr\Service\PubNubService::getInstance()->subscribe($app, array($renderer, 'update'), $interest);

@@ -1,9 +1,9 @@
 <?php
-namespace OliverHader\RelayrConnector\Service\Cli;
+namespace OliverHader\RelayrConnector\Handler\Cli;
 
 use \OliverHader\RelayrConnector as Relayr;
 
-class RenderService {
+class RenderHandler {
 
 	/**
 	 * @var Relayr\Model\App
