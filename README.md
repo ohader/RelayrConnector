@@ -20,6 +20,27 @@
 + retrieves transmitters and devices that are assigned
 + retrieves sensor data from PubNub by retrieved subscriptions
 
+## Handlers
+
+### UpdateHandler
+
+Updates sensor data in the accordant models.
+
+### PersistenceHandler
+
+Persists sensor data from the accordant domain models using a PDO connection.
+
++ database table **sensor_data**
+  + id: auto-incremented value
+  + device: UUID of the sensor device
+  + sensor_data_name: name of the the sensor data property (e.g. temperature, humidity, ...)
+  + sensor_data_value: accordant sensor data value
+  + sensor_data_timestamp: date-time of when the sensor data has been received
+
+### RenderHandler
+
+Renders a table of the current sensor data values.
+
 ## ConsoleView example
 
 *find in the example/ directory*
@@ -41,7 +62,10 @@ LeetBar
 +-------------+---------------------------+----------------------------------------------------------------------+
 ```
 
+## PdoPersistence example
+
+This is similar to the previous ConsoleView example, except that data is persisted to a MySQL database connection.
+
 ## Next steps
 
 * extend the generic sensor data model into specific sub-models
-* integrate persistence layer to accumulate sensor data
