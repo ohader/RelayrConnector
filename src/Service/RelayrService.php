@@ -131,16 +131,7 @@ class RelayrService {
 
 		$devices = new \SplObjectStorage();
 		foreach ($devicesData as $deviceData) {
-			$device = new Relayr\Model\Device(
-				$transmitter->getApp(),
-				$deviceData['id'],
-				$deviceData['name'],
-				$deviceData['secret'],
-				$deviceData['description'],
-				$deviceData['public']
-			);
-			$device->setFirmwareVersion($deviceData['firmwareVersion']);
-			$device->setModelId($deviceData['model']);
+			$device = Relayr\Model\Device::create($transmitter->getApp(), $deviceData);
 			$devices->attach($device);
 		}
 		return $devices;

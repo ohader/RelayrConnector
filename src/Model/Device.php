@@ -19,10 +19,32 @@ class Device {
 	protected $subscription;
 	protected $sensorData;
 
-	public function __construct(App $app, $id, $name, $secret = NULL, $description = NULL, $public = FALSE) {
+	/**
+	 * @param App $app
+	 * @param array $data
+	 * @return Device
+	 */
+	static public function create(App $app, array $data) {
+		$device = new Relayr\Model\Device(
+			$app,
+			$data['id'],
+			$data['name'],
+			$data['model'],
+			$data['secret'],
+			$data['description'],
+			$data['public']
+		);
+		if (isset($data['firmwareVersion'])) {
+			$device->setFirmwareVersion($data['firmwareVersion']);
+		}
+		return $device;
+	}
+
+	public function __construct(App $app, $id, $name, $modelId, $secret = NULL, $description = NULL, $public = FALSE) {
 		$this->app = $app;
 		$this->id = $id;
 		$this->name = $name;
+		$this->modelId = $modelId;
 		$this->secret = $secret;
 		$this->description = $description;
 		$this->public = (bool)$public;
@@ -64,10 +86,6 @@ class Device {
 
 	public function getModelId() {
 		return $this->modelId;
-	}
-
-	public function setModelId($modelId) {
-		$this->modelId = $modelId;
 	}
 
 	public function getModel() {
