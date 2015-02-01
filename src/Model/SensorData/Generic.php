@@ -38,4 +38,17 @@ class Generic {
 		$this->values = $data;
 	}
 
+	/**
+	 * @return array
+	 */
+	public function __toFlatArray() {
+		$flatArray = $this->getValues();
+		foreach ($flatArray as $key => $value) {
+			if (is_array($value)) {
+				$flatArray[$key] = json_encode($value);
+			}
+		}
+		return $flatArray;
+	}
+
 }

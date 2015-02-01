@@ -43,4 +43,15 @@ class Temperature extends Generic {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
+	public function __toFlatArray() {
+		$flatArray = array(
+			'temperature' => $this->getTemperature(),
+			'humidity' => $this->getHumidity(),
+		);
+		return $flatArray;
+	}
+
 }

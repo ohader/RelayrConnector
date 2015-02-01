@@ -62,4 +62,16 @@ class Light extends Generic {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
+	public function __toFlatArray() {
+		$flatArray = array(
+			'light' => $this->getLight(),
+			'color' => $this->getColor()->getHex(),
+			'proximity' => $this->getProximity(),
+		);
+		return $flatArray;
+	}
+
 }
