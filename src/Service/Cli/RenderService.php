@@ -63,9 +63,14 @@ class RenderService {
 			$table = new \Symfony\Component\Console\Helper\Table($output);
 			$table->setHeaders(array('Device', 'TimeStamp', 'Sensor Data Values'));
 
+			$rowIndex = 0;
 			foreach ($transmitter->getDevices() as $device) {
 				if ($this->models !== NULL && !in_array($device->getModelId(), $this->models)) {
 					continue;
+				}
+
+				if ($rowIndex++ > 0) {
+					$table->addRow(new \Symfony\Component\Console\Helper\TableSeparator());
 				}
 
 				$table->addRow(array(
