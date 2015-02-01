@@ -5,6 +5,9 @@ use \OliverHader\RelayrConnector as Relayr;
 
 class UtilityService {
 
+	const DATETIME_DefaultFormat = 'c';
+	const DATETIME_PersistenceFormat = 'Y-m-d h:i:s';
+
 	/**
 	 * @var UtilityService
 	 */
@@ -49,6 +52,17 @@ class UtilityService {
 		}
 
 		return $readingsAssignment;
+	}
+
+	/**
+	 * @param int $timestamp
+	 * @param string $format
+	 * @return string
+	 */
+	public function formatMillisecondTimestamp($timestamp, $format = self::DATETIME_DefaultFormat) {
+		$dateTime = new \DateTime();
+		$dateTime->setTimestamp($timestamp / 1000);
+		return $dateTime->format($format);
 	}
 
 }

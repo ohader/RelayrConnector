@@ -58,7 +58,7 @@ class RenderHandler extends Relayr\Handler\AbstractAppHandler {
 				$table->addRow(array(
 					$device->getName(),
 					$this->datify(
-						$device->getSensorData()->getTimeStamp() / 1000
+						$device->getSensorData()->getTimeStamp()
 					),
 					$this->combine(
 						$device->getSensorData()->getValues()
@@ -89,15 +89,10 @@ class RenderHandler extends Relayr\Handler\AbstractAppHandler {
 	}
 
 	protected function datify($value) {
-		$result = '';
-
 		if (!empty($value)) {
-			$dateTime = new \DateTime();
-			$dateTime->setTimestamp($value);
-			$result = $dateTime->format('c');
+			$value = Relayr\Service\UtilityService::getInstance()->formatMillisecondTimestamp($value);
 		}
-
-		return $this->emptify($result);
+		return $this->emptify($value);
 	}
 
 	protected function emptify($value, $emptyValue = '-/-') {
