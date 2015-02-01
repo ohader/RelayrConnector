@@ -15,6 +15,7 @@ class Device {
 	protected $modelId;
 	protected $firmwareVersion;
 
+	protected $model;
 	protected $subscription;
 	protected $sensorData;
 
@@ -67,6 +68,13 @@ class Device {
 
 	public function setModelId($modelId) {
 		$this->modelId = $modelId;
+	}
+
+	public function getModel() {
+		if (!isset($this->model)) {
+			$this->model = Relayr\Repository\ModelRepository::getInstance()->findById($this->getModelId());
+		}
+		return $this->model;
 	}
 
 	public function getSubscription() {

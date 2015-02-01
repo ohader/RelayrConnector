@@ -146,6 +146,25 @@ class RelayrService {
 		return $devices;
 	}
 
+	/**
+	 * @return \ArrayObject|Relayr\Model\Model[]
+	 */
+	public function getModels() {
+		$request = $this->client->get(self::API_URL . 'device-models');
+
+		$modelsData = json_decode($this->executeRequest($request)->getBody(), TRUE);
+		if ($modelsData === FALSE) {
+			throw new \RuntimeException('Models could not be determined');
+		}
+
+		$models = new \ArrayObject();
+		foreach ($modelsData as $modelData) {
+			$model = Relayr\Model\Model::create($modelData);
+			$models[$model->getId()] = $model;
+		}
+		return $models;
+	}
+
 	public function getSubscription(Relayr\Model\Device $device) {
 		$app = $device->getApp();
 		$request = $this->client->post(self::API_URL . 'apps/' . $app->getId() . '/devices/' . $device->getId());
