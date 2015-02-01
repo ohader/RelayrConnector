@@ -9,12 +9,14 @@ class RenderService {
 	 * @var Relayr\Model\App
 	 */
 	protected $app;
+	protected $models;
 
 	protected $lastTimeStamp;
 	protected $renderInterval = 1.0;
 
-	public function __construct(Relayr\Model\App $app) {
+	public function __construct(Relayr\Model\App $app, array $models = NULL) {
 		$this->app = $app;
+		$this->models = $models;
 	}
 
 	public function getApp() {
@@ -62,6 +64,10 @@ class RenderService {
 			$table->setHeaders(array('Device', 'TimeStamp', 'Sensor Data Values'));
 
 			foreach ($transmitter->getDevices() as $device) {
+				if ($this->models !== NULL && !in_array($device->getModelId(), $this->models)) {
+					continue;
+				}
+
 				$table->addRow(array(
 					$device->getName(),
 					$this->datify(

@@ -25,8 +25,8 @@ class PubNubService {
 	 */
 	protected $connections;
 
-	public function subscribe(Relayr\Model\App $app, $callback) {
-		foreach ($this->determineAssignments($app) as $assignment) {
+	public function subscribe(Relayr\Model\App $app, $callback, array $models = NULL) {
+		foreach ($this->determineAssignments($app, $models) as $assignment) {
 			$assignment->getConnection()->subscribe(
 				$assignment->getChannels()->getArrayCopy(),
 				$callback
@@ -36,14 +36,19 @@ class PubNubService {
 
 	/**
 	 * @param Relayr\Model\App $app
+	 * @param NULL|array $models
 	 * @return Relayr\Model\Assignment[]
 	 */
-	protected function determineAssignments(Relayr\Model\App $app) {
+	protected function determineAssignments(Relayr\Model\App $app, array $models = NULL) {
 		/** @var Relayr\Model\Assignment[] $assignments */
 		$assignments = array();
 
 		foreach ($app->getTransmitters() as $transmitter) {
 			foreach ($transmitter->getDevices() as $device) {
+				if ($models !== NULL && !in_array($device->getModelId(), $models)) {
+					continue;
+				}
+
 				$subscription = $device->getSubscription();
 				$identifier = $subscription->identify();
 
