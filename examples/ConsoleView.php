@@ -21,5 +21,13 @@ $interest = array(
 	Relayr\Model\Model::MODEL_WunderbarLightProximitySensor,
 );
 
-$renderer = new \OliverHader\RelayrConnector\Handler\Cli\RenderHandler($app, $interest);
-Relayr\Service\PubNubService::getInstance()->subscribe($app, array($renderer, 'update'), $interest);
+// Handler taking care of updating sensor data results
+$updateHandler = new Relayr\Handler\UpdateHandler($app);
+// Handler taking care of rendering in general
+$renderHandler = new Relayr\Handler\Cli\RenderHandler($app, $interest);
+// Handler combining previous handlers and defining execution order
+$handler = new Relayr\Handler\ChainedHandler();
+$handler->register($updateHandler)->register($renderHandler);
+
+// Subscribe to PubNub service and invoke handlers if updates are received (= pulled in this case)
+Relayr\Service\PubNubService::getInstance()->subscribe($app, array($handler, 'update'), $interest);

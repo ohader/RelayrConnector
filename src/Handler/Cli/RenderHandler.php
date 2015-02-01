@@ -3,12 +3,8 @@ namespace OliverHader\RelayrConnector\Handler\Cli;
 
 use \OliverHader\RelayrConnector as Relayr;
 
-class RenderHandler {
+class RenderHandler extends Relayr\Handler\AbstractAppHandler {
 
-	/**
-	 * @var Relayr\Model\App
-	 */
-	protected $app;
 	protected $models;
 
 	protected $lastTimeStamp;
@@ -19,26 +15,12 @@ class RenderHandler {
 		$this->models = $models;
 	}
 
-	public function getApp() {
-		return $this->app;
-	}
-
+	/**
+	 * @param array $envelope
+	 * @return bool
+	 */
 	public function update($envelope) {
-		if (!isset($envelope['message']) || !isset($envelope['channel'])) {
-			return FALSE;
-		}
-
-		$device = $this->getApp()->getChannelDevice($envelope['channel']);
-		if ($device === NULL) {
-			return FALSE;
-		}
-
-		$device->getSensorData()->update(
-			json_decode($envelope['message'], TRUE)
-		);
-
 		$this->render();
-
 		return TRUE;
 	}
 
