@@ -6,7 +6,7 @@ use \OliverHader\RelayrConnector as Relayr;
 class UtilityService {
 
 	const DATETIME_DefaultFormat = 'c';
-	const DATETIME_PersistenceFormat = 'Y-m-d h:i:s';
+	const DATETIME_PersistenceFormat = 'Y-m-d H:i:s';
 
 	/**
 	 * @var UtilityService
